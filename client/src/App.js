@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import BookDisplay from "./components/booksDisplay";
+import BooksForm from "./components/booksForm";
+import axios from "axios";
 
-function App() {
+function App(props) {
+
+
+  const getBooks = () => {
+console.log("Its is active")
+axios
+.get('http://localhost:4000/api/books')
+.then(res => {
+  console.log(res)
+})
+.catch(err => {
+  console.log(err)
+})
+
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <h1>Books API Project</h1>
+    <BookDisplay name={"Dapper"} />
+    <BooksForm name={"Dapper"} getBooksBtn={getBooks} />
     </div>
   );
 }

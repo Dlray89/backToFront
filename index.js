@@ -1,9 +1,9 @@
 const express = require('express')
+const cors = require('cors')
 
 const server = express()
-server.use(express.json)
-
-const port = 5000
+server.use(express.json())
+server.use(cors())
 let books = [
     {
         id: 1,
@@ -21,9 +21,10 @@ let books = [
 }
 ];
 
-
-server.get("/api/books", (req,res) => {
+const PORT = 4000
+server.get('/api/books', (req,res) => {
+    req.body;
     res.status(200).json(books)
 })
-server.listen(port, () => 
-console.log( `\n ** Server is running http://localhost: ${port} **\n`))
+server.listen(PORT, () => 
+console.log( `\n ** Server is running http://localhost:${PORT} **\n`))
